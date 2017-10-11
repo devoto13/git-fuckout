@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ -n "$(git status --porcelain)" ]; then
+	BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+	if [ "$BRANCH_NAME" != "HEAD" ]; then
+		git add .
+		git commit -m 'fucking local changes'
+	fi
+fi
+
+git checkout "$@"
